@@ -13,8 +13,8 @@
         <link rel="stylesheet" href="css/leaflet.photon.css">
         <style>
         #map {
-            width: 1247px;
-            height: 875px;
+            width: 639px;
+            height: 667px;
         }
         </style>
         <title></title>
@@ -34,10 +34,11 @@
         <script src="js/labels.js"></script>
         <script src="js/leaflet.photon.js"></script>
         <script src="data/fp_zones_1.js"></script>
+        <script src="data/mta_stations_2.js"></script>
         <script>
         var map = L.map('map', {
             zoomControl:false, maxZoom:28, minZoom:1
-        }).fitBounds([[40.62714720677696,-74.173254538463],[40.940307514548024,-73.58571090164685]]);
+        }).fitBounds([[40.58434936478339,-74.00431438990647],[40.91145426853518,-73.5922110604662]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/qgis2web/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
@@ -108,19 +109,19 @@
         var bounds_group = new L.featureGroup([]);
         function setBounds() {
         }
-        map.createPane('pane_OSMStandard_0');
-        map.getPane('pane_OSMStandard_0').style.zIndex = 400;
-        var layer_OSMStandard_0 = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            pane: 'pane_OSMStandard_0',
+        map.createPane('pane_GoogleRoad_0');
+        map.getPane('pane_GoogleRoad_0').style.zIndex = 400;
+        var layer_GoogleRoad_0 = L.tileLayer('https://mt1.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
+            pane: 'pane_GoogleRoad_0',
             opacity: 1.0,
-            attribution: '<a href="https://www.openstreetmap.org/copyright">© OpenStreetMap contributors, CC-BY-SA</a>',
+            attribution: '<a href="https://www.google.at/permissions/geoguidelines/attr-guide.html">Map data ©2015 Google</a>',
             minZoom: 1,
             maxZoom: 28,
             minNativeZoom: 0,
-            maxNativeZoom: 19
+            maxNativeZoom: 20
         });
-        layer_OSMStandard_0;
-        map.addLayer(layer_OSMStandard_0);
+        layer_GoogleRoad_0;
+        map.addLayer(layer_GoogleRoad_0);
         function pop_fp_zones_1(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
@@ -192,7 +193,7 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(48,18,59,1.0)',
+                fillColor: 'rgba(48,18,59,0.30196078431372547)',
                 interactive: false,
             }
                     break;
@@ -207,7 +208,7 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(70,98,216,1.0)',
+                fillColor: 'rgba(70,98,216,0.30196078431372547)',
                 interactive: false,
             }
                     break;
@@ -222,7 +223,7 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(53,171,248,1.0)',
+                fillColor: 'rgba(53,171,248,0.30196078431372547)',
                 interactive: false,
             }
                     break;
@@ -237,7 +238,7 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(27,229,181,1.0)',
+                fillColor: 'rgba(27,229,181,0.30196078431372547)',
                 interactive: false,
             }
                     break;
@@ -252,7 +253,7 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(116,254,93,1.0)',
+                fillColor: 'rgba(116,254,93,0.30196078431372547)',
                 interactive: false,
             }
                     break;
@@ -267,7 +268,7 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(201,239,52,1.0)',
+                fillColor: 'rgba(201,239,52,0.30196078431372547)',
                 interactive: false,
             }
                     break;
@@ -282,7 +283,7 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(251,185,56,1.0)',
+                fillColor: 'rgba(251,185,56,0.30196078431372547)',
                 interactive: false,
             }
                     break;
@@ -297,7 +298,7 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(245,105,24,1.0)',
+                fillColor: 'rgba(245,105,24,0.30196078431372547)',
                 interactive: false,
             }
                     break;
@@ -312,7 +313,7 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(201,41,3,1.0)',
+                fillColor: 'rgba(201,41,3,0.30196078431372547)',
                 interactive: false,
             }
                     break;
@@ -327,7 +328,7 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(122,4,3,1.0)',
+                fillColor: 'rgba(122,4,3,0.30196078431372547)',
                 interactive: false,
             }
                     break;
@@ -347,6 +348,106 @@
         });
         bounds_group.addLayer(layer_fp_zones_1);
         map.addLayer(layer_fp_zones_1);
+        function pop_mta_stations_2(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['gtfs_stop_'] !== null ? autolinker.link(String(feature.properties['gtfs_stop_']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['station_id'] !== null ? autolinker.link(String(feature.properties['station_id']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['complex_id'] !== null ? autolinker.link(String(feature.properties['complex_id']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['division'] !== null ? autolinker.link(String(feature.properties['division']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['line'] !== null ? autolinker.link(String(feature.properties['line']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['stop_name'] !== null ? autolinker.link(String(feature.properties['stop_name']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['borough'] !== null ? autolinker.link(String(feature.properties['borough']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['cbd'] !== null ? autolinker.link(String(feature.properties['cbd']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['daytime_ro'] !== null ? autolinker.link(String(feature.properties['daytime_ro']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['structure'] !== null ? autolinker.link(String(feature.properties['structure']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['gtfs_latit'] !== null ? autolinker.link(String(feature.properties['gtfs_latit']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['gtfs_longi'] !== null ? autolinker.link(String(feature.properties['gtfs_longi']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['north_dire'] !== null ? autolinker.link(String(feature.properties['north_dire']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['south_dire'] !== null ? autolinker.link(String(feature.properties['south_dire']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ada'] !== null ? autolinker.link(String(feature.properties['ada']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ada_northb'] !== null ? autolinker.link(String(feature.properties['ada_northb']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ada_southb'] !== null ? autolinker.link(String(feature.properties['ada_southb']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ada_notes'] !== null ? autolinker.link(String(feature.properties['ada_notes']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            var content = removeEmptyRowsFromPopupContent(popupContent, feature);
+			layer.on('popupopen', function(e) {
+				addClassToPopupIfMedia(content, e.popup);
+			});
+			layer.bindPopup(content, { maxHeight: 400 });
+        }
+
+        function style_mta_stations_2_0() {
+            return {
+                pane: 'pane_mta_stations_2',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(35,96,165,1.0)',
+                interactive: false,
+            }
+        }
+        map.createPane('pane_mta_stations_2');
+        map.getPane('pane_mta_stations_2').style.zIndex = 402;
+        map.getPane('pane_mta_stations_2').style['mix-blend-mode'] = 'normal';
+        var layer_mta_stations_2 = new L.geoJson(json_mta_stations_2, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_mta_stations_2',
+            layerName: 'layer_mta_stations_2',
+            pane: 'pane_mta_stations_2',
+            onEachFeature: pop_mta_stations_2,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_mta_stations_2_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_mta_stations_2);
+        map.addLayer(layer_mta_stations_2);
         setBounds();
         var i = 0;
         layer_fp_zones_1.eachLayer(function(layer) {
@@ -354,7 +455,7 @@
                 feature: layer.feature,
                 variables: {}
             };
-            layer.bindTooltip((layer.feature.properties['FP_Name'] !== null?String('<div style="color: #323232; font-size: 10pt; font-family: \'Open Sans\', sans-serif;">' + layer.feature.properties['FP_Name']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_fp_zones_1'});
+            layer.bindTooltip((layer.feature.properties['FP_Name'] !== null?String('<div style="color: #323232; font-size: 8pt; font-weight: bold; font-family: \'Open Sans\', sans-serif;">' + layer.feature.properties['FP_Name']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_fp_zones_1'});
             labels.push(layer);
             totalMarkers += 1;
               layer.added = true;
