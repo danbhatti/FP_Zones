@@ -12,9 +12,11 @@
         <link rel="stylesheet" href="css/fontawesome-all.min.css">
         <link rel="stylesheet" href="css/leaflet.photon.css">
         <style>
-        #map {
-            width: 639px;
-            height: 667px;
+        html, body, #map {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
         }
         </style>
         <title></title>
@@ -34,11 +36,10 @@
         <script src="js/labels.js"></script>
         <script src="js/leaflet.photon.js"></script>
         <script src="data/fp_zones_1.js"></script>
-        <script src="data/mta_stations_2.js"></script>
         <script>
         var map = L.map('map', {
             zoomControl:false, maxZoom:28, minZoom:1
-        }).fitBounds([[40.58434936478339,-74.00431438990647],[40.91145426853518,-73.5922110604662]]);
+        }).fitBounds([[40.659424054166216,-74.07621601926755],[40.91664138725181,-73.55380895209142]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/qgis2web/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
@@ -348,106 +349,6 @@
         });
         bounds_group.addLayer(layer_fp_zones_1);
         map.addLayer(layer_fp_zones_1);
-        function pop_mta_stations_2(feature, layer) {
-            var popupContent = '<table>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['gtfs_stop_'] !== null ? autolinker.link(String(feature.properties['gtfs_stop_']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['station_id'] !== null ? autolinker.link(String(feature.properties['station_id']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['complex_id'] !== null ? autolinker.link(String(feature.properties['complex_id']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['division'] !== null ? autolinker.link(String(feature.properties['division']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['line'] !== null ? autolinker.link(String(feature.properties['line']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['stop_name'] !== null ? autolinker.link(String(feature.properties['stop_name']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['borough'] !== null ? autolinker.link(String(feature.properties['borough']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['cbd'] !== null ? autolinker.link(String(feature.properties['cbd']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['daytime_ro'] !== null ? autolinker.link(String(feature.properties['daytime_ro']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['structure'] !== null ? autolinker.link(String(feature.properties['structure']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['gtfs_latit'] !== null ? autolinker.link(String(feature.properties['gtfs_latit']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['gtfs_longi'] !== null ? autolinker.link(String(feature.properties['gtfs_longi']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['north_dire'] !== null ? autolinker.link(String(feature.properties['north_dire']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['south_dire'] !== null ? autolinker.link(String(feature.properties['south_dire']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['ada'] !== null ? autolinker.link(String(feature.properties['ada']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['ada_northb'] !== null ? autolinker.link(String(feature.properties['ada_northb']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['ada_southb'] !== null ? autolinker.link(String(feature.properties['ada_southb']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['ada_notes'] !== null ? autolinker.link(String(feature.properties['ada_notes']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                </table>';
-            var content = removeEmptyRowsFromPopupContent(popupContent, feature);
-			layer.on('popupopen', function(e) {
-				addClassToPopupIfMedia(content, e.popup);
-			});
-			layer.bindPopup(content, { maxHeight: 400 });
-        }
-
-        function style_mta_stations_2_0() {
-            return {
-                pane: 'pane_mta_stations_2',
-                radius: 4.0,
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(35,96,165,1.0)',
-                interactive: false,
-            }
-        }
-        map.createPane('pane_mta_stations_2');
-        map.getPane('pane_mta_stations_2').style.zIndex = 402;
-        map.getPane('pane_mta_stations_2').style['mix-blend-mode'] = 'normal';
-        var layer_mta_stations_2 = new L.geoJson(json_mta_stations_2, {
-            attribution: '',
-            interactive: false,
-            dataVar: 'json_mta_stations_2',
-            layerName: 'layer_mta_stations_2',
-            pane: 'pane_mta_stations_2',
-            onEachFeature: pop_mta_stations_2,
-            pointToLayer: function (feature, latlng) {
-                var context = {
-                    feature: feature,
-                    variables: {}
-                };
-                return L.circleMarker(latlng, style_mta_stations_2_0(feature));
-            },
-        });
-        bounds_group.addLayer(layer_mta_stations_2);
-        map.addLayer(layer_mta_stations_2);
         setBounds();
         var i = 0;
         layer_fp_zones_1.eachLayer(function(layer) {
@@ -472,6 +373,6 @@
         map.on("layerremove", function(){
             resetLabels([layer_fp_zones_1]);
         });
-        </script>
+        </script>        
     </body>
 </html>
